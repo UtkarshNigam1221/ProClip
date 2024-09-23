@@ -1,0 +1,50 @@
+﻿<Window x:Class="Hackathon1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Hackathon1"
+        mc:Ignorable="d"
+        Title="ProClip" Height="400" Width="800">
+    <DockPanel>
+        <ToolBarTray DockPanel.Dock="Top">
+            <ToolBar>
+                <Button Content="Settings" Click="Settings_Click"/>
+            </ToolBar>
+        </ToolBarTray>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="300"/>
+                <ColumnDefinition Width="500" />
+            </Grid.ColumnDefinitions>
+            
+            <!-- Left Panel with Search Box and Clipboard History -->
+            <Grid Grid.Column="0" Margin="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <!-- Auto height for Search Box -->
+                    <RowDefinition Height="*" />
+                    <!-- Remaining space for ListBox -->
+                </Grid.RowDefinitions>
+
+                <!-- Search Box (first row) -->
+                <StackPanel Grid.Row="0">
+                    <TextBlock Text="Search:" FontWeight="Bold" Margin="0,0,0,5" />
+                    <TextBox Name="SearchTextBox" Width="280" Margin="0,0,0,10" TextChanged="SearchTextBox_TextChanged" />
+                </StackPanel>
+
+                <!-- Clipboard History ListBox (second row, scrollable) -->
+                <ListBox Name="ClipboardHistoryListBox" 
+                         Grid.Row="1" 
+                         SelectionChanged="ClipboardHistoryListBox_SelectionChanged"
+                         ScrollViewer.VerticalScrollBarVisibility="Auto" />
+            </Grid>
+
+            <!-- Preview of the selected clipboard item -->
+            <StackPanel Grid.Column="1" Margin="10,10,10,10">
+                <TextBlock Text="Preview:" FontWeight="Bold" Margin="0,0,0,10"/>
+                <ContentControl Name="PreviewControl" Width="Auto" Height="Auto" />
+            </StackPanel>
+        </Grid>
+    </DockPanel>
+</Window>
